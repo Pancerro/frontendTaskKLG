@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <p>{{data.description}}</p>
+</div>
+<div mat-dialog-actions class="right-button">
+  <a
+    *ngIf="data.cancel"
+    href="javascript:"
+    mat-raised-button
+    (click)="onNoClick()"
+  >
+    <span>{{data.cancel}}</span>
+  </a>
+  <a
+    *ngIf="data.confirm"
+    href="javascript:"
+    class="btn btn-primary kt-margin-r-10"
+    color="primary"
+    mat-raised-button
+    (click)="onDeleteClick()"
+  >
+    <span>{{data.confirm}}</span>
+  </a>
+</div>
+

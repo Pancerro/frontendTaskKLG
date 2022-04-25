@@ -1,0 +1,56 @@
+<div class="table">
+  <div *ngIf="dataSource.filteredData.length">
+    <div>
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sort($event)" matSortActive="{{fields[0].key}}" matSortDirection="asc" matSortDisableClear>
+        <ng-container matColumnDef="{{field.key}}" *ngFor="let field of tableData.fields">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            <span>{{field.header}}</span>
+          </th>
+          <td mat-cell *matCellDef="let element" [ngClass]="field.className" [ngSwitch]="field.type">
+            <div *ngSwitchDefault [title]="element[field.key]">
+              <span>{{element[field.key]}}</span>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions" stickyEnd>
+          <th mat-header-cell *matHeaderCellDef>
+            <span></span>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <div class="action">
+              <ng-container *ngFor="let action of tableData.options.actions">
+                <div class="action-item">
+                  <div *ngIf="action.callback" class="action-item--{{action.label}}"
+                  (click)="action.callback(row.id, row); $event.stopPropagation()">
+                    <mat-icon *ngIf="action.label === 'view'" [matTooltip]="action.tooltip">
+                      visibility_on
+                    </mat-icon>
+                    <mat-icon *ngIf="action.label === 'edit'" [matTooltip]="action.tooltip">
+                      edit
+                    </mat-icon>
+                    <mat-icon *ngIf="action.label === 'download'" [matTooltip]="action.tooltip">
+                      archive
+                    </mat-icon>
+                    <mat-icon *ngIf="action.label === 'remove'" [matTooltip]="action.tooltip">
+                      delete_outline
+                    </mat-icon>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="tableData.allKeys; sticky: true"></tr>
+        <tr mat-row *matRowDef="let element; columns: tableData.allKeys"></tr>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="!dataSource.filteredData || !dataSource.filteredData.length">
+    <h3>
+      <span>No data</span>
+    </h3>
+  </div>
+</div>

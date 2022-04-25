@@ -1,0 +1,8 @@
+<div class="radio-container">
+  <div class="title"><span>{{title}}</span></div>
+  <mat-radio-group [formControl]="myControl">
+    <mat-radio-button *ngFor="let item of list" [value]="item.value" color="primary">
+      <span>{{item.name}}</span>
+    </mat-radio-button>
+  </mat-radio-group>
+</div>

@@ -1,0 +1,70 @@
+<div class="add-element-container">
+  <div class="add-element">
+    <div class="title"><h3>{{title}}</h3></div>
+    <form [formGroup]="addListForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Name *</mat-label>
+        <input matInput type="text" formControlName="name">
+        <mat-error>Field is required</mat-error>
+      </mat-form-field>
+      <app-combobox-select
+        [required]="true"
+        [title]="'Trigger Name *'"
+        [myControl]="findFormControl('triggerName')"
+        [list]="selectList">
+      </app-combobox-select>
+      <app-combobox-radio
+        [title]="'Trigger Data Know'"
+        [myControl]="findFormControl('triggerDataKnow')"
+        [list]="selectList">
+      </app-combobox-radio>
+      <div class="selectWithCheckbox">
+        <div class="container">
+          <mat-checkbox color="primary" formControlName="isInterimTrigger"> Is Interim Trigger?</mat-checkbox>
+          <app-combobox-select
+            [required]="false"
+            [title]="'Interim Trigger Name'"
+            [myControl]="findFormControl('interimTriggerName')"
+            [list]="selectList">
+          </app-combobox-select>
+        </div>
+      </div>
+      <app-combobox-select
+        [required]="true"
+        [title]="'Constraint Name *'"
+        [myControl]="findFormControl('constraintName')"
+        [list]="selectList">
+      </app-combobox-select>
+      <app-combobox-radio
+        [title]="'Constraint Value Know'"
+        [myControl]="findFormControl('constraintValueKnow')"
+        [list]="selectList">
+      </app-combobox-radio>
+      <app-combobox-select
+        [required]="true"
+        [title]="'Effective Deadline Info *'"
+        [myControl]="findFormControl('effectiveDeadlineInfo')"
+        [list]="selectList">
+      </app-combobox-select>
+      <app-combobox-select
+        [required]="false"
+        [title]="'Related Processing Basis Reference Type'"
+        [myControl]="findFormControl('relatedProcessingBasisReferenceType')"
+        [list]="selectList">
+      </app-combobox-select>
+      <app-combobox-checkbox
+        [list]="selectList"
+        (event)="addCheckboxValue($event)">
+      </app-combobox-checkbox>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput type="text" formControlName="description">
+        </textarea>
+      </mat-form-field>
+    </form>
+    <div class="button-container">
+      <button mat-raised-button (click)="cancel()"><mat-icon>close</mat-icon>Close</button>
+      <button *ngIf="mode !== FormMode.VIEW" mat-raised-button (click)="save()" [disabled]="addListForm.invalid"><mat-icon>save</mat-icon>Save</button>
+    </div>
+  </div>
+</div>

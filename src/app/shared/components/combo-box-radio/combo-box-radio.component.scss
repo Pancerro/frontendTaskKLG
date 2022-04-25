@@ -1,0 +1,18 @@
+.radio-container {
+  box-shadow: 0 4px 16px #00000029;
+  width: 99%;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  margin-bottom: 12px;
+  .title {
+    margin-left: 24px;
+    color: #b7b1b1;
+    margin-bottom: 6px;
+  }
+  mat-radio-group {
+    margin-left: 12px;
+    mat-radio-button {
+      margin-right: 24px;
+    }
+  }
+}

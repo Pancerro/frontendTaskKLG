@@ -1,0 +1,22 @@
+<mat-form-field appearance="legacy">
+  <mat-label>{{title}}</mat-label>
+  <input
+    (input)="onInput($event)"
+    type="text"
+    maxlength="255"
+    matInput
+    [formControl]="myControl"
+    [matAutocomplete]="auto"
+  >
+  <button matSuffix mat-icon-button>
+    <mat-icon>keyboard_arrow_down</mat-icon>
+  </button>
+
+  <mat-error *ngIf="myControl.hasError('required')">Field is required</mat-error>
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFunction"
+                    (optionSelected)="onItemClick($event)">
+    <mat-option *ngFor="let obj of filteredValues | async" [value]="obj.name">
+      {{obj.name}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

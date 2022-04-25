@@ -1,0 +1,15 @@
+<div class="list">
+  <div class="title">
+    <h1>Trigger and Constraint Schemes</h1>
+  </div>
+  <div class="list-table" *ngIf="isLoading$ | async">
+    <div>
+      <button mat-flat-button color="primary" (click)="add()"><mat-icon>add</mat-icon>New</button>
+    </div>
+    <app-table
+      [fields]="fields"
+      [options]="options"
+      [rows]="listData">
+    </app-table>
+  </div>
+</div>

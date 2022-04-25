@@ -1,0 +1,59 @@
+
+$sizes: 10, 45, 100, 105, 110, 120, 130, 175, 180, 200, 230, 235, 240, 260, 300, 330, 560;
+.table {
+  margin-bottom: 100px;
+  box-shadow: 0 4px 16px #00000029;
+  table {
+    min-width: 100%;
+    th {
+      padding-left: 28px !important;
+      padding-right: 10px !important;
+    }
+    td {
+      padding-left: 28px !important;
+      padding-right: 10px;
+      &.ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+      }
+
+      @each $size in $sizes {
+        &.width-#{$size}p {
+         width: $size * 1px;
+        }
+      }
+
+      @each $size in $sizes {
+        &.min-width-#{$size}p {
+          min-width: $size * 1px;
+        }
+      }
+
+    }
+
+    .action {
+      display: flex;
+      justify-content: center;
+      width: 75px;
+      flex-wrap: wrap;
+      &-item {
+        margin: 5px;
+        &--edit, &--remove, &--view, &--download {
+          width: 26px;
+          height: 26px;
+          cursor: pointer;
+        }
+      }
+      &-item:hover {
+        color: blue;
+      }
+    }
+  }
+
+  .no-data {
+    margin-top: 30px;
+    text-align: center;
+  }
+}
